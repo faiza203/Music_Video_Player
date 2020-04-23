@@ -8,7 +8,7 @@ const progressMain = document.getElementById("progress_main");
 const title = document.getElementById("title");
 const cover = document.getElementById("music_image");
 const music = ["hey", "summer", "ukulele"];
-let musicIndex = 0;
+let musicIndex = 2;
 loadMusic(music[musicIndex]);
 function loadMusic(music) {
   title.innerText = music;
@@ -27,6 +27,22 @@ function pauseMusic() {
   playButton.querySelector("i.fa").classList.remove("fa-pause");
   audio.pause();
 }
+function previousMusic() {
+  musicIndex--;
+  if (musicIndex < 0) {
+    musicIndex = music.length - 1;
+  }
+  loadMusic(music[musicIndex]);
+  playMusic();
+}
+function nextMusic() {
+  musicIndex++;
+  if (musicIndex > music.length - 2) {
+    musicIndex = 0;
+  }
+  loadMusic(music[musicIndex]);
+  playMusic();
+}
 playButton.addEventListener("click", () => {
   const isPlaying = musicMain.classList.contains("play");
   if (isPlaying) {
@@ -35,3 +51,5 @@ playButton.addEventListener("click", () => {
     playMusic();
   }
 });
+previousButton.addEventListener("click", previousMusic);
+nextButton.addEventListener("click", nextMusic);
