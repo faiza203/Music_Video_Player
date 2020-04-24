@@ -105,6 +105,7 @@ body {
 .music_main.play .music_info {
   opacity: 1;
   transform: translateY(-100%);
+  width: 90%;
 }
 .music_info h4 {
   margin: 0;
